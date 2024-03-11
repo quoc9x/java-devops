@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @RestController
 // Cách viết đối với version mới @RequestMapping("/users")
@@ -28,6 +29,11 @@ public class UserController {
     @GetMapping("")
     public ResponseEntity<?> getListUser() {
         List<UserDto> users = userService.getListUser();
+        try {
+            TimeUnit.SECONDS.sleep(10);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return ResponseEntity.ok(users);
     }
 
